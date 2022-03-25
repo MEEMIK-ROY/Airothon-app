@@ -70,7 +70,7 @@ function Footer() {
               Close
             </Button>
             <Button variant="primary" onClick={handleClose}>
-              Save Changes
+              Donate
             </Button>
           </Modal.Footer>
         </Modal>

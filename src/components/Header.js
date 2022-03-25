@@ -1,13 +1,26 @@
+import axios from 'axios';
+import {useState,useEffect} from 'react';
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-// import Form from 'react-bootstrap/Form'
-// import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 
 
 function Header() {
+    const [data,setData] = useState([]);
+    useEffect(() => {
+        async function fetchData(){
+            try {
+                const response = await axios.get('https://enigmatic-headland-64592.herokuapp.com/api/category/getAll');
+                console.log(response.data);
+                setData(response.data.message);
+              } catch (error) {
+                console.error(error);
+              }
+        }
+        fetchData();
+    }, [])
     return (
       <div>
          <Navbar bg="dark" expand="lg" variant="dark">
@@ -21,20 +34,15 @@ function Header() {
                 navbarScroll
                 >
                     <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/clothes">Clothes</Nav.Link>
                     {/* <Nav.Link href="#action2">Link</Nav.Link> */}
                     <NavDropdown title="Categories" id="navbarScrollingDropdown">
-                        <NavDropdown.Item href="/movies">Category1</NavDropdown.Item>
+                        {data.map((category)=>
+                            <NavDropdown.Item href={"/category/"+category._id} key={category._id}>{category.name}</NavDropdown.Item>
+                        )}
                     </NavDropdown>
                 </Nav>
-                {/* <Form className="d-flex">
-                    <FormControl
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                    />
-                    <Button variant="outline-success">Search</Button> 
-                </Form> */}
+                
                 <Button 
                 variant="success"
                 style={{marginRight:'5px'}}
