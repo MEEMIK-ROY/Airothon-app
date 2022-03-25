@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "movie": "Bell Bottom",
+        "actor": "Akshay Kumar",
+        "img": "../assets/images/p1.jpg"
+    },
+    {
+        "id": 2,
+        "movie": "Shersaah",
+        "actor": "Siddarth",
+        "img": "../assets/images/p2.jpg"
+    },
+    {
+        "id": 3,
+        "movie": "Venom",
+        "actor": "Tom Hardy",
+        "img": "../assets/images/p3.jpg"
+    },
+    {
+        "id": 4,
+        "movie": "Sultan",
+        "actor": "Salman Khan",
+        "img": "../assets/images/p4.jpg"
+    },
+    {
+        "id": 5,
+        "movie": "No Time To Die ",
+        "actor": "Daniel Craig",
+        "img": "../assets/images/p5.jpg"
+    }
+]
