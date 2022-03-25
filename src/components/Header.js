@@ -35,8 +35,14 @@ function Header() {
                     />
                     <Button variant="outline-success">Search</Button> 
                 </Form> */}
-                <Button variant="success">Login/Register</Button>
+                <Button 
+                variant="success"
+                style={{marginRight:'5px'}}
+                onClick={()=> window.location.href ="/register" }>Register</Button>
                 </Navbar.Collapse>
+                <Button 
+                variant="success"
+                onClick={()=> window.location.href ="/login" }>Login</Button>
             </Container>
         </Navbar>
       </div>

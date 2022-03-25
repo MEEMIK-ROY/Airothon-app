@@ -16,6 +16,9 @@ import SingleMovieFetch from "./components/Movies/SingleMovieFetch";
 import Registration from "./components/Registration";
 import Footer from './components/Footer';
 import HomePage from "./components/Home/HomePage";
+import AllClothes from "./components/Clothes/AllClothes";
+import SingleCloth from "./components/Clothes/SingleCloth";
+import Login from "./components/Login";
 
 
 function App() {
@@ -42,9 +45,12 @@ function App() {
         
        
         <Routes>
+          <Route exact path="/clothes" element={<AllClothes />}/>
+          <Route exact path="/cloth/:clothid" element={<SingleCloth />}/>
           <Route exact path="/movies" element={<AllMoviesFetch />}/>
           <Route exact path="/movies/:movid" element={<SingleMovieFetch />}/>
           <Route exact path="/register" element={<Registration />}/>
+          <Route exact path="/login" element={<Login />}/>
           <Route exact path="/" element={<HomePage />}/>
         </Routes>
         

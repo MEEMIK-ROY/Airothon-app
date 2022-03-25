@@ -7,30 +7,21 @@ import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
 
 
-export default function Registration() {
-    const [user,setUser] = useState("");
+export default function Login() {
     const [emailAdd,setEmailAdd]= useState("");
-    const [address,setAddress]= useState("");
-    const [contact,setContact]= useState("");
     const [pass,setPass] = useState("");
 
     function clearInput(){
-        setUser("");
         setEmailAdd("");
-        setAddress("");
-        setContact("");
         setPass("");
     }
     async function postUser(){
         const userDetails = {
-            "name":user,
             "email":emailAdd,
-            "address":address,
-            "phone_number":contact,
             "password":pass
         };
         
-        const response = await axios.post("https://enigmatic-headland-64592.herokuapp.com/api/signup",userDetails).then((res)=>{
+        const response = await axios.post("https://enigmatic-headland-64592.herokuapp.com/api/login",userDetails).then((res)=>{
             Swal.fire({
                 title: `<strong>${res.data.message}</strong>`,
                 icon: 'success',
@@ -38,6 +29,9 @@ export default function Registration() {
                 showCancelButton: false,
                 focusConfirm: false
               });
+              console.log(res);
+              localStorage.setItem("User",JSON.stringify(res.data.data.user));
+              localStorage.setItem("Token",JSON.stringify(res.data.data.auth_token));
             }).catch((error)=>
                             Swal.fire({
                                 title: `<strong>${error.message}</strong>`,
@@ -49,8 +43,7 @@ export default function Registration() {
         );
         // console.log(response);
         console.log(response);
-            // localStorage.setItem("User",response.data.data.user);
-            // localStorage.setItem("Token",response.data.data.access_token);
+            
             // clearInput();
     }
 
@@ -58,33 +51,12 @@ export default function Registration() {
         <div>
             <Container style={{padding:'5%'}}>
                 <Form>
-                    <Form.Group className="mb-3" controlId="formUserName">
-                        <Form.Label>User Name</Form.Label>
-                        <Form.Control 
-                            value={user} 
-                            onChange={(e)=> setUser(e.target.value)} 
-                            type="text" placeholder="Enter User Name" />
-                    </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control 
                             value={emailAdd} 
                             onChange={(e)=> setEmailAdd(e.target.value)} 
                             type="email" placeholder="Enter email" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicAddress">
-                        <Form.Label>Address</Form.Label>
-                        <Form.Control 
-                            value={address} 
-                            onChange={(e)=> setAddress(e.target.value)} 
-                            type="text" placeholder="Enter your address" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formContact">
-                        <Form.Label>Contact Number</Form.Label>
-                        <Form.Control 
-                            value={contact} 
-                            onChange={(e)=> setContact(e.target.value)} 
-                            type="number" placeholder="Enter your Phone Number" />
                         <Form.Text className="text-muted">
                         We'll never share your personal details with anyone else.
                         </Form.Text>
@@ -100,7 +72,7 @@ export default function Registration() {
                         <Form.Check type="checkbox" label="Check me out" />
                     </Form.Group> */}
                     <Button variant="primary" onClick={postUser}>
-                        Submit
+                        Login
                     </Button>
                 </Form>
             </Container>

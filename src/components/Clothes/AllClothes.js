@@ -1,3 +1,4 @@
+import './AllClothes.css'
 import axios from 'axios';
 import {useState,useEffect} from 'react';
 
@@ -9,14 +10,17 @@ import Card from 'react-bootstrap/Card';
 export default function AllClothes() {
 
     const [data,setData] = useState([]);
-    useEffect(async () => {
-        try {
-            const response = await axios.get('https://mr-bms-backend.herokuapp.com/movies');
-            console.log(response);
-            setData(response.data);
-          } catch (error) {
-            console.error(error);
-          }
+    useEffect(() => {
+        async function fetchData(){
+            try {
+                const response = await axios.get('https://enigmatic-headland-64592.herokuapp.com/api/cloth/getAll');
+                console.log(response.data);
+                setData(response.data.message);
+              } catch (error) {
+                console.error(error);
+              }
+        }
+        fetchData();
     }, [])
 
     // async function getMovies() {
@@ -28,20 +32,20 @@ export default function AllClothes() {
     //     }
     //   }
     return (
-        <div>
-            <Container fluid style={{padding:'5%', background:'wheat'}}>
+        <div className='bg'>
+            <Container fluid style={{padding:'5%'}}>
                 <Row style={{textAlign:'center'}}>
-                    {data.map((movie)=>
+                    {data.map((cloth)=>
                         <Col xs={6} md={4} lg={3} 
                         style={{marginTop:'2%'}} 
-                        id={movie._id} key={movie._id}
-                        onClick={()=> window.location.href ="/movies/"+movie._id } >
-                            <Card style={{width:'250px',height:'300px'}}>
-                                <Card.Img variant="top" src={movie.imageUrl} style={{width:'250px',height:'200px'}}/>
+                        id={cloth._id} key={cloth._id}
+                        onClick={()=> window.location.href ="/cloth/"+cloth._id } >
+                            <Card style={{padding:'20px',margin:'10px', borderRadius:'10px', maxHeight:"350px",maxWidth:"250px"}}>
+                                <Card.Img variant="top" src={cloth.clothImg[0].img} style={{maxHeight:'250px',maxWidth:'240px'}}/>
                                 <Card.Body>
-                                <Card.Title>{movie.title}</Card.Title>
+                                <Card.Title>{cloth.type}</Card.Title>
                                 <Card.Text>
-                                    {movie.actor}
+                                    {cloth.description}
                                 </Card.Text>
                                 </Card.Body>
                             </Card>

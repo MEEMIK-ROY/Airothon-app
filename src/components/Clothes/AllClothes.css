@@ -1,0 +1,40 @@
+.bg {
+    background-image: url("/public/assets/images/back1.jpeg");
+    height:100%;
+    min-height: 150vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+.bg2{
+    background-image: url("/public/assets/images/back2.png");
+    min-height: 100vh;
+    height:100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.text1{
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+.text2{
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
+.labelText{
+    text-align: right;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+.valueText{
+    text-align: left;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
